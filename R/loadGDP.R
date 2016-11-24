@@ -16,5 +16,13 @@ loadGDP = function()
 
   dfData = merge(dfData, dfSectors)
 
-  return(dfData)
+  dfData$SeasonallyAdjusted = FALSE
+
+  dfData[grepl("Seasonal",dfData$Statistic), "SeasonallyAdjusted"] = TRUE
+
+  out_list = list(data = dfData)
+
+  class(out_list) = 'csor'
+
+  return(out_list)
 }
