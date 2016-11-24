@@ -10,4 +10,10 @@ plot.csor = function(obj, SecCode = 0, SeaAdj = FALSE)
     geom_line() +
     xlab('Time Period') +
     ylab('GDP in Euro Millions')
+
+  # Stacked bar chart
+  subDataStacked = subset(data, (SectorCode != 0) & (SeasonallyAdjusted == SeaAdj))
+
+  ggplot(subDataStacked, aes(x = numericQuarter, y = value ,fill = SectorCode)) +
+    geom_bar(stat='identity')
 }
