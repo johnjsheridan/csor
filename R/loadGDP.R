@@ -10,15 +10,21 @@ loadGDP = function()
 
   Sector = unique(dfData$Sector)
 
-  SectorCodes = seq(from = 0, to = length(Sector) - 1)
+  SectorCode = seq(from = 0, to = length(Sector) - 1)
 
-  dfSectors = data.frame(Sector, SectorCodes)
+  dfSectors = data.frame(Sector, SectorCode)
 
   dfData = merge(dfData, dfSectors)
 
   dfData$SeasonallyAdjusted = FALSE
 
   dfData[grepl("Seasonal",dfData$Statistic), "SeasonallyAdjusted"] = TRUE
+
+  temp = strsplit(dfData$Quarter, "Q")
+
+  temp2 = lapply(temp, function(x) return(as.numeric(x[1]) + (0.25 * as.numeric(x[2])) - 0.25))
+
+  dfData$numericQuarter = unlist(temp2)
 
   out_list = list(data = dfData)
 
