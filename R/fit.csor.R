@@ -1,17 +1,15 @@
-fit.csor = function(obj)
+fit = function(obj, SecCode = 0, SeaAdj = FALSE)
+{
+  UseMethod('fit')
+}
+
+fit.csor = function(obj, SecCode = 0, SeaAdj = FALSE)
 {
   data = obj$data
 
-  SecCode = 0
-  SeaAdj = FALSE
-
   subData = subset(data, (SectorCode == SecCode) & (SeasonallyAdjusted == SeaAdj))
 
-  fit.sp <- smooth.spline(subData$numericQuarter, subData$value, cv=TRUE)
-  plot(subData$numericQuarter, subData$value)
-  points(subData$numericQuarter,predict(fit.sp,subData$numericQuarter)$y,col="green",type="l",lty=1)
-}
-plot(subData$numericQuarter, subData$value)
-points(subData$numericQuarter,predict(fit.sp,subData$numericQuarter)$y,col="green",type="l",lty=1)
+  fit.sp = smooth.spline(subData$numericQuarter, subData$value, cv=TRUE)
 
-matrix(, nrow = 15, ncol = 0)
+  return(fit.sp)
+}
