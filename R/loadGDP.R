@@ -4,7 +4,7 @@ loadGDP = function()
 {
   gdp.url = "http://www.cso.ie/StatbankServices/StatbankServices.svc/jsonservice/responseinstance/NQQ28"
 
-  lData = fromJSONstat(readLines(gdp.url))
+  lData = fromJSONstat(readLines(gdp.url, warn = FALSE))
 
   dfData = lData[[1]]
 
