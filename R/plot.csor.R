@@ -4,7 +4,7 @@ plot.csor = function(obj, SecCode = 0, SeaAdj = FALSE, type = "l")
 {
   data = obj$data
 
-  if(type == "l")
+  if((type == "l") || (type == "lf"))
   {
     subData = subset(data, (SectorCode == SecCode) & (SeasonallyAdjusted == SeaAdj))
 
@@ -12,12 +12,20 @@ plot.csor = function(obj, SecCode = 0, SeaAdj = FALSE, type = "l")
     graphtitle = gsub("annually", "annually\n", graphtitle)
     graphtitle = paste(graphtitle, "\n", subData$Sector[1], sep = "")
 
-    ggplot(subData, aes(x = numericQuarter, y = value)) +
+    p = ggplot(subData, aes(x = numericQuarter, y = value)) +
       theme_bw() +
       ggtitle(graphtitle) +
-      geom_line() +
       xlab('Time Period') +
       ylab('GDP in Euro Millions')
+
+    if(type == "l")
+    {
+      p + geom_line()
+    }
+    else
+    {
+      p + geom_point() + geom_line(aes(subData$numericQuarter,predict(fit(obj, SecCode, SeaAdj),subData$numericQuarter)$y))
+    }
   }
   else
   {
