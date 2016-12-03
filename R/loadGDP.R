@@ -2,7 +2,7 @@
 #'
 #' @return A csor object containing the latest available GDP data from the CSO by sector, seasonally adjusted and not seasonally adjusted
 #' @export
-#' @import rjstat
+#' @importFrom rjstat "fromJSONstat"
 #'
 #' @seealso \code{\link{sectorList}}, \code{\link{plot.csor}}, \code{\link{fit.csor}}, \code{\link{predict.csor}}
 #' @examples
@@ -13,7 +13,7 @@ loadGDP = function()
   gdp.url = "http://www.cso.ie/StatbankServices/StatbankServices.svc/jsonservice/responseinstance/NQQ28"
 
   # Load the data in JSONstat format and convert to a list
-  lData = fromJSONstat(readLines(gdp.url, warn = FALSE))
+  lData = rjstat::fromJSONstat(readLines(gdp.url, warn = FALSE))
 
   # Pull the data frame of the data from the list
   dfData = lData[[1]]
