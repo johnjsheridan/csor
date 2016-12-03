@@ -1,3 +1,14 @@
+#' Predict one quarter ahead for each of the GDP time series
+#'
+#' @param obj An object of class \code{csor} from \code{\link{loadGDP}}
+#'
+#' @return A data frame wih a prediction for the next quarters GDP for each combination of sector and whether the data is seasonally adjusted or not.
+#' @export
+#'
+#' @seealso \code{\link{loadGDP}}, \code{\link{plot.csor}}, \code{\link{sectorList}}, \code{\link{fit.csor}}, \code{\link{smooth.spline}}
+#' @examples
+#' data = loadGDP()
+#' pred = predict(data)
 predict.csor = function(obj)
 {
   # Extract the data from the csor object
