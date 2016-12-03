@@ -9,7 +9,7 @@ shinyUI(fluidPage(
   # Application title
   titlePanel("Analysis of Irish GDP data from the Central Statistics Office"),
 
-  # Sidebar with a slider input for number of bins
+  # Sidebar with our list of drop down input parameters
   sidebarLayout(
     sidebarPanel(
        selectInput("sector",
@@ -36,7 +36,7 @@ shinyUI(fluidPage(
                    selected = "l")
     ),
 
-    # Show a plot of the generated distribution
+    # Show the plot corresponding to the selected parameters
     mainPanel(
        plotOutput("distPlot")
     )

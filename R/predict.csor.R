@@ -1,9 +1,12 @@
 predict.csor = function(obj)
 {
+  # Extract the data from the csor object
   data = obj$data
 
+  # Set xs to one quarter beyond the last quarter in the time series
   xs = max(data$numericQuarter) + 0.25
 
+  # Create a textual version of this new quarter
   splitNumeric = strsplit(as.character(xs), "[.]")
 
   if (is.null(splitNumeric[[1]][2]))
@@ -25,6 +28,7 @@ predict.csor = function(obj)
 
   period = paste(splitNumeric[[1]][1], quarter, sep = "")
 
+  # Set up a data frame to hold our predictions
   predictions = unique(data.frame(SectorName = data$Sector, SectorCode = data$SectorCode, SeasonallyAdjusted = data$SeasonallyAdjusted))
 
   predictions$period = period
@@ -33,6 +37,8 @@ predict.csor = function(obj)
 
   rownames(predictions) = NULL
 
+  # Create a prediction for the new quarter for each combination of sector and
+  # whether the data is seasonally adjusted or not
   for(i in 1:nrow(predictions))
   {
     predictions[i,]$PredictedValue = predict(fit(obj, SecCode = predictions[i,]$SectorCode, SeaAdj = predictions[i,]$SeasonallyAdjusted), xs)$y

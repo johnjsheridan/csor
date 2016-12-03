@@ -3,7 +3,7 @@
 library(shiny)
 library(csor)
 
-# Define server logic required to draw a histogram
+# Define server logic required to draw a plot corresponding to our parameters
 shinyServer(function(input, output) {
 
   output$distPlot = renderPlot({
