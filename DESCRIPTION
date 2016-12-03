@@ -1,11 +1,19 @@
 Package: csor
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Download, analyse and plot latest GDP data from the CSO
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Authors@R: person("John","Sheridan", email = "jsheridan76@gmail.com", role = c("aut", "cre"))
+Description: Downloads the latest GDP figures from the CSO web api. Plots the
+    data for individual sectors or all together or with a fitted line calculated
+    using a smoothing spline. Also predicts one quarter ahead for all sectors. Also
+    has a shiny app for investigating the plots.
+License: GPL (>=2)
 Encoding: UTF-8
 LazyData: true
+Imports:
+    ggplot2,
+    shiny,
+    rjstat
+VignetteBuilder: knitr
+NeedsCompilation: no
+RoxygenNote: 5.0.1
