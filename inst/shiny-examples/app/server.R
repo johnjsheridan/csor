@@ -1,4 +1,4 @@
-# Server function for climr package shiny app
+# Server function for csor package shiny app
 
 library(shiny)
 library(csor)

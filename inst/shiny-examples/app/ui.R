@@ -1,4 +1,4 @@
-# Web app for the climr package
+# Web app for the csor package
 
 library(shiny)
 library(csor)
