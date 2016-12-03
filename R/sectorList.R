@@ -1,3 +1,14 @@
+#' Return the list of sectors with their codes
+#'
+#' @param data Output from the \code{\link{loadGDP}} function
+#'
+#' @return Nothing: prints the list
+#' @export
+#'
+#' @seealso \code{\link{loadGDP}}, \code{\link{plot.csor}}, \code{\link{fit.csor}}, \code{\link{predict.csor}}
+#' @examples
+#' data = loadGDP()
+#' sectorList(data)
 sectorList = function(data)
 {
   # Check that the class is csor before we continue

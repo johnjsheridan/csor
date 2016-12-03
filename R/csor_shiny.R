@@ -1,3 +1,12 @@
+#' Shiny App for to show the plots from the csor package
+#'
+#' @return Runs the shiny app
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' csor_shiny()
+#' }
 csor_shiny = function()
 {
   appDir = system.file("shiny-examples", 'app', package = 'csor')

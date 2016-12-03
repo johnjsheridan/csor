@@ -1,5 +1,12 @@
-library(rjstat)
-
+#' Load GDP Data from the CSO
+#'
+#' @return A csor object containing the latest available GDP data from the CSO by sector, seasonally adjusted and not seasonally adjusted
+#' @export
+#' @import rjstat
+#'
+#' @seealso \code{\link{sectorList}}, \code{\link{plot.csor}}, \code{\link{fit.csor}}, \code{\link{predict.csor}}
+#' @examples
+#' data = loadGDP()
 loadGDP = function()
 {
   # Set up the url for the GDP data from the CSO
