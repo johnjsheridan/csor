@@ -24,7 +24,7 @@ fit.csor = function(obj, SecCode = 0, SeaAdj = FALSE)
   data = obj$data
 
   # Subet the data according to the parameters
-  subData = subset(data, (SectorCode == SecCode) & (SeasonallyAdjusted == SeaAdj))
+  subData = data[(data$SectorCode == SecCode) & (data$SeasonallyAdjusted == SeaAdj),]
 
   # Fit a smoothing spline to the data
   fit.sp = smooth.spline(subData$numericQuarter, subData$value, cv=TRUE)
