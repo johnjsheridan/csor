@@ -20,6 +20,6 @@ data = loadGDP()
 sectorList(data)
 }
 \seealso{
-\code{\link{loadGDP}}, \code{\link{plot.csor}}, \code{\link{fit.csor}}, \code{\link{predict.csor}}
+\code{\link{loadGDP}}, \code{\link{plot.csor}}, \code{\link{fit}}, \code{\link{predict.csor}}
 }
 
