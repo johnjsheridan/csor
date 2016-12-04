@@ -4,10 +4,12 @@
 \alias{predict.csor}
 \title{Predict one quarter ahead for each of the GDP time series}
 \usage{
-\method{predict}{csor}(obj)
+\method{predict}{csor}(object, ...)
 }
 \arguments{
-\item{obj}{An object of class \code{csor} from \code{\link{loadGDP}}}
+\item{object}{An object of class \code{csor} from \code{\link{loadGDP}}}
+
+\item{...}{Additional arguments passed to or from other methods}
 }
 \value{
 A data frame wih a prediction for the next quarters GDP for each combination of sector and whether the data is seasonally adjusted or not.
@@ -20,6 +22,6 @@ data = loadGDP()
 pred = predict(data)
 }
 \seealso{
-\code{\link{loadGDP}}, \code{\link{plot.csor}}, \code{\link{sectorList}}, \code{\link{fit.csor}}, \code{\link{smooth.spline}}
+\code{\link{loadGDP}}, \code{\link{plot.csor}}, \code{\link{sectorList}}, \code{\link{fit}}, \code{\link{smooth.spline}}
 }
 

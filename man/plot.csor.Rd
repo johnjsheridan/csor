@@ -4,31 +4,33 @@
 \alias{plot.csor}
 \title{Plot the GDP data in various ways}
 \usage{
-\method{plot}{csor}(obj, SecCode = 0, SeaAdj = FALSE, type = "l")
+\method{plot}{csor}(x, SecCode = 0, SeaAdj = FALSE, type = "l", ...)
 }
 \arguments{
-\item{obj}{An object of class \code{csor} from \code{\link{loadGDP}}}
+\item{x}{An object of class \code{csor} from \code{\link{loadGDP}}}
 
 \item{SecCode}{The sector code for the sector to fit}
 
 \item{SeaAdj}{An indicator of whether we are fitting to the seasonally adjusted (TRUE) or the non-seasonally adjusted (FALSE) data}
 
 \item{type}{The type of plot to create. "l" for a straight line plot. "lf" for a points plot with a fitted smoothing spline line. "b" for a stacked bar chart of all sectors.}
+
+\item{...}{Additional arguments passed to or from other methods}
 }
 \value{
-Nothing generates a plot
+Nothing: generates a plot
 }
 \description{
 Plot the GDP data in various ways
 }
 \examples{
-#' data = loadGDP()
+data = loadGDP()
 plot(data)
 plot(data, SecCode = 4, SeaAdj = TRUE)
 plot(data, SecCode = 2, SeaAdj = FALSE, type = "lf")
 plot(data, SeaAdj = FALSE, type = "b")
 }
 \seealso{
-\code{\link{loadGDP}}, \code{\link{plot.csor}}, \code{\link{sectorList}}, \code{\link{predict.csor}}, \code{\link{smooth.spline}}
+\code{\link{loadGDP}}, \code{\link{plot.csor}}, \code{\link{sectorList}}, \code{\link{predict.csor}}, \code{\link{fit}}, \code{\link{smooth.spline}}
 }
 

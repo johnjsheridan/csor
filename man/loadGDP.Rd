@@ -16,6 +16,6 @@ Load GDP Data from the CSO
 data = loadGDP()
 }
 \seealso{
-\code{\link{sectorList}}, \code{\link{plot.csor}}, \code{\link{fit.csor}}, \code{\link{predict.csor}}
+\code{\link{sectorList}}, \code{\link{plot.csor}}, \code{\link{fit}}, \code{\link{predict.csor}}
 }
 
