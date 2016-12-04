@@ -1,4 +1,4 @@
-#' Shiny App for to show the plots from the csor package
+#' Shiny App to show the plots from the csor package
 #'
 #' @return Runs the shiny app
 #' @export
