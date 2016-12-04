@@ -1,0 +1,102 @@
+---
+title: "Introduction to the csor Package"
+author: "John Sheridan"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Introduction to the csor Package}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+## Description
+
+The package allows easy download of the quarterly GDP data from the Central Statistics Office website through their Statbank API. There are also functions for fitting smoothing splines to the data, plotting the data and predicting one time period ahead.
+
+## About the Statbank API
+
+The CSO has an online database for all of their releases called the Statbank which is accessible from http://www.cso.ie/en/databases/. 
+
+Recently there is also access through the Statbank API which allows direct machine to machine downloads of many of the tables in JSON-stat format. For more information on JSON-stat see https://json-stat.org/.
+
+The list of datasets available for download are listed at http://www.cso.ie/webserviceclient/DatasetListing.aspx. They cover a wide variety of statistics but this package will just look at GDP data.
+
+## About our Data
+
+We are looking at the Quarterly Gross Domestic Product at Constant Factor Cost. This data is chain linked annually and is currently referenced to 2014. This data shows the values in Euro millions by quarter, sector and whether the data is seasonally adjusted or not. On the Statbank this is table NQQ28.
+
+## Functions
+
+The package is made up of six functions which are detailed below. We describe what would be the usual workflow
+
+### Download the data using loadGDP()
+
+First thing to do is download the GDP data using the loadGDP function. The data comes from the Statbank API in JSON-stat format and the function converts it into a dataframe and then to an object of type csor that can be passed to the other functions.
+
+```{r, message=FALSE, warning=FALSE, include=FALSE}
+library(csor)
+```
+
+```{r}
+data = loadGDP()
+```
+
+### Get a list of the sectors and their codes using sectorList(data)
+
+The plot and fit functions accept a sector number as a parameter. The sectorList function is provided to give the list of sector numbers and their corresponding description.
+
+```{r}
+sectorList(data)
+```
+
+### Fit a smoothing spline model to a subset of the data using fit(data, SecCode, SeaAdj)
+
+The fit function allows you to obtain a fitted smoothing spline for a given subset of the data. The function performs the subsetting so we pass it the full dataset and then specify the sector and whether we want to look at the seasonally adjusted or non-seasonally adjusted data. It returns an object of type smooth.spline.
+
+The default value for sector is 0 and the default value for seasonally adjusted is FALSE.
+
+It is not necessary for the user to use fit in the normal workflow as it is called by the plot and predict functions.
+
+```{r}
+fit(data, SecCode = 4, SeaAdj = TRUE)
+```
+
+### Plot the data in various ways using plot(data, SecCode, SeaAdj, type)
+
+The plot function plots the data in our csor object. Just like the fit function it performs the subsetting so we pass it the full dataset and then specify the sector and whether we want to look at seasonally adjusted or non-seasonally adjusted data.
+
+The default value for sector is 0 and the default value for seasonally adjusted is FALSE.
+
+We also specify the type of plot we want. The plot function can work in three different modes. In the first mode it creates a line plot for a specific time series. This is the default plot type.
+
+```{r, fig.width=8}
+plot(data, SecCode = 2, SeaAdj = FALSE, type = "l")
+```
+
+In the second mode it creates a scatter plot for a specific time series and overlays a fitted line fit using a smoothing spline.
+
+```{r, fig.width=8}
+plot(data, SecCode = 2, SeaAdj = FALSE, type = "lf")
+```
+
+In the third mode it creates a stacked bar chart of all sectors for either the seasonally adjusted or non-seasonally adjusted data. This mode will ignore any value for the sector code parameter. Also it will remove any sectors that are aggregates of other sectors so that the sum is equal to the total.
+
+```{r, fig.width=8}
+plot(data, SeaAdj = FALSE, type = "s")
+```
+
+### Predict the next quarters GDP values using predict(data)
+
+The predict function fits a smoothing spline model to each time series in the data and predicts one quarter ahead. It returns a data frame which is a table of our predicted values.
+
+```{r}
+predict(data)
+```
+
+### Try various plots using csor_shiny()
+
+The cso_shiny function is a shiny app which showcases the plot function above. It loads the data independently not requiring it to be passed to it. It allows the user to change the parameters going to the plot function and see the plot immediately.
+
+```{r, eval=FALSE, echo=TRUE}
+csor_shiny()
+```
