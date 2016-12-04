@@ -2,7 +2,7 @@
 % Please edit documentation in R/csor_shiny.R
 \name{csor_shiny}
 \alias{csor_shiny}
-\title{Shiny App for to show the plots from the csor package}
+\title{Shiny App to show the plots from the csor package}
 \usage{
 csor_shiny()
 }
@@ -10,7 +10,7 @@ csor_shiny()
 Runs the shiny app
 }
 \description{
-Shiny App for to show the plots from the csor package
+Shiny App to show the plots from the csor package
 }
 \examples{
 \dontrun{
