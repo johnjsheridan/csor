@@ -4,7 +4,7 @@
 #' @export
 #' @importFrom rjstat "fromJSONstat"
 #'
-#' @seealso \code{\link{sectorList}}, \code{\link{plot.csor}}, \code{\link{fit.csor}}, \code{\link{predict.csor}}
+#' @seealso \code{\link{sectorList}}, \code{\link{plot.csor}}, \code{\link{fit}}, \code{\link{predict.csor}}
 #' @examples
 #' data = loadGDP()
 loadGDP = function()
