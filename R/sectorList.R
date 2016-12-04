@@ -5,7 +5,7 @@
 #' @return Nothing: prints the list
 #' @export
 #'
-#' @seealso \code{\link{loadGDP}}, \code{\link{plot.csor}}, \code{\link{fit.csor}}, \code{\link{predict.csor}}
+#' @seealso \code{\link{loadGDP}}, \code{\link{plot.csor}}, \code{\link{fit}}, \code{\link{predict.csor}}
 #' @examples
 #' data = loadGDP()
 #' sectorList(data)
